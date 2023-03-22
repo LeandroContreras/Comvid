@@ -20,7 +20,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-hover mt-2">
+                    <div class="contenedor-tabla" style="overflow:auto; height:400px">
+                    <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Nombres</th>
@@ -31,29 +32,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="table-active">
-                            <td>Taqueo</th>
-                            <td>Contreras</td>
-                            <td>7654356</td>
-                            <td>La Paz</td>
-                            <td>impsimads jasfljhaf </td>
-                          </tr>
+                          @foreach ($contactos as $contacto )
                           <tr>
-                            <th scope="row">Default</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
+                            <td>{{$contacto->nombres}}</td>
+                            <td>{{$contacto->apellidos}}</td>
+                            <td>{{$contacto->telefono}}</td>
+                            <td>{{$contacto->departamento}}</td>
+                            <td>{{$contacto->descripcion}}</td>
                           </tr>
-                          <tr class="table-active">
-                            <td>Default</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
+                    </div>
                 </div>
             </div>
         </div>

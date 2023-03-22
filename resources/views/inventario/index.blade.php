@@ -26,7 +26,7 @@
     </div>
     <div class="datatable">
     <div class="row justify-content-center">
-        <table id="inventario" class="table table-hover">
+        <table id="inventario" class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">CODIGO</th>

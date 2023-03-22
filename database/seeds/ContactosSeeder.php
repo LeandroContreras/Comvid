@@ -19,6 +19,7 @@ class ContactosSeeder extends Seeder
             'tipo'=>'Proveedor',
             'departamento'=>'La Paz',
             'descripcion'=>'Este es el primero',
+            'user_id'=>5,
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);
@@ -28,6 +29,7 @@ class ContactosSeeder extends Seeder
             'telefono'=>'74363835',
             'tipo'=>'Cliente',
             'departamento'=>'Cochabamba',
+            'user_id'=>2,
             'descripcion'=>'Este es el segundo',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
@@ -39,6 +41,7 @@ class ContactosSeeder extends Seeder
             'tipo'=>'Proveedor',
             'departamento'=>'Santa Cruz',
             'descripcion'=>'Este es el tercero',
+            'user_id'=>2,
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);

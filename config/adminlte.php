@@ -237,7 +237,7 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+         // Sidebar items:
         //[
         //  'type' => 'sidebar-menu-search',
         //  'text' => 'search',
@@ -253,10 +253,11 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+            'can'         => 'usuario.index'
         ],
         ['header' => ''],
         [
-            'text' => 'INICIO',
+            'text' => 'INICIOOOO',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-house-user',
             'icon_color' => 'green',
@@ -266,6 +267,14 @@ return [
             'icon' => 'fas fa-fw fa-archive',
             'url'=> 'inventario',
             'icon_color' => 'red',
+            
+        ],
+        [
+            'text' => 'ADM. DEL PERSONAL',
+            'icon' => 'fas fa-fw fa-users',
+            'url'=> 'usuario',
+            'icon_color' => 'purple',
+            'can'=>'usuario.index'
         ],
         [
             'text'    => 'PRODUCTOS',
@@ -273,10 +282,17 @@ return [
             'icon_color' => 'orange',
             'submenu' => [
                 [
-                    'text' => 'EDITAR PRODUCTOS',
-                    'url'  => 'productos',
+                    'text' => 'CATEGORIAS',
+                    'url'  => 'categoria',
+                    'icon'    => 'fas fa-fw fa-clipboard',
+                    'can'=> 'categorias.index',
                 ],
                 [
+                    'text' => 'LISTA DE PRODUCTOS',
+                    'url'  => 'item',
+                    'icon' => 'fas fa-faw fa-list-ol'
+                ],
+               /* [
                     'text'    => 'AGREGAR PRODUCTOS',
                     'url'     => '#',
                     'submenu' => [
@@ -303,10 +319,10 @@ return [
                 [
                     'text' => 'level_one',
                     'url'  => '#',
-                ],
+                ],*/
             ],
         ],
-        [
+        /*[
             'text' => 'ADM. DEL PERSONAL',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-users',
@@ -330,18 +346,20 @@ return [
                             ]
             
                         ]
-        ],
+        ],*/
         [
             'text' => 'VENTAS',
             'icon' => 'fas fa-fw fa-shopping-cart',
             'icon_color' => 'yellow',
-            'url'=> '',
+            'url'=> 'ventas',
+            'can'=> 'ventas.index'
         ],
         [
             'text' => 'CONTACTOS',
             'icon' => 'fas fa-fw fa-address-book',
             'icon_color' => 'blue',
             'url'=> 'contactos',
+            'can'=>'contactos.index'
         ],
         
         //['header' => 'labels'],
@@ -361,6 +379,7 @@ return [
         //    'url'        => '#',
         //],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

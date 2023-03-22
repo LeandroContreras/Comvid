@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class InventarioController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,19 +15,13 @@ class InventarioController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');   
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
-        return view('inventario.index');
+        $usuario = User::orderBy('created_at', 'asc')->paginate(5);
+        return view('usuario.index', compact('usuario'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +51,8 @@ class InventarioController extends Controller
      */
     public function show($id)
     {
-        //
+       $usuario = User::find($id);
+       return $usuario;
     }
 
     /**
@@ -64,11 +61,11 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
+    public function edit(User $usuario)
+{
+    $roles = Role::all();
+    return view('usuario.edit', ['usuario' => $usuario, 'roles' => $roles]);
+}
     /**
      * Update the specified resource in storage.
      *
@@ -76,9 +73,11 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $usuario)
     {
-        //
+        $usuario->roles()->sync($request->roles);
+
+        return redirect()->route('usuario.edit', $usuario)->with('info', 'Se asigno el rol de usuario correctamente');
     }
 
     /**
@@ -91,5 +90,4 @@ class InventarioController extends Controller
     {
         //
     }
-    
 }

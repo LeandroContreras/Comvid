@@ -32,7 +32,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $porcentaje = 0; 
+        return view('productos.create', compact('porcentaje'));
+
     }
 
     /**

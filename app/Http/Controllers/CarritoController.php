@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Carrito;
 use Illuminate\Http\Request;
 
-class InventarioController extends Controller
+class CarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +16,9 @@ class InventarioController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
-        return view('inventario.index');
+        //
     }
 
     /**
@@ -50,10 +45,10 @@ class InventarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Carrito $carrito)
     {
         //
     }
@@ -61,10 +56,10 @@ class InventarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Carrito $carrito)
     {
         //
     }
@@ -73,10 +68,10 @@ class InventarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Carrito $carrito)
     {
         //
     }
@@ -84,12 +79,11 @@ class InventarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carrito $carrito)
     {
         //
     }
-    
 }

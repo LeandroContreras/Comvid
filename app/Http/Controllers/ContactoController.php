@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Contactos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ContactoController extends Controller
@@ -17,8 +19,9 @@ class ContactoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('contactos.index');
+    {   
+        $contactos= Contactos::all();
+        return view('contactos.index', compact('contactos', $contactos));
     }
 
     /**
@@ -30,7 +33,7 @@ class ContactoController extends Controller
     {
         //Con esta linea podemos mostrar consultando la base de datos de la tabla contactos
         //Con el comando pluck mostramos que atributos queremos que se muestren
-        DB::table('contactos')->get()->pluck('nombres','id', 'apellidos')->dd();
+        //DB::table('contactos')->get()->pluck('nombres','id', 'apellidos')->dd();
         return view('contactos.create');
     }
 
@@ -56,7 +59,12 @@ class ContactoController extends Controller
             'nombres'=>$data['nombres'],
             'apellidos'=>$data['apellidos'],
             'telefono'=>$data['telefono'],
+            'tipo'=>$data['tipo'],
+            'departamento'=>$data['departamento'],
             'descripcion'=>$data['descripcion'],
+            'user_id'=>Auth::user()->id,
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s'),
         ]);
         return redirect()->action('ContactoController@index');
     }

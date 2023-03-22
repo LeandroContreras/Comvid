@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
+use App\Ventas;
+use App\Contactos;
 use Illuminate\Http\Request;
 
-class InventarioController extends Controller
+class VentasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +16,12 @@ class InventarioController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');   
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    
     public function index()
     {
-        return view('inventario.index');
+        return view('ventas.index');
     }
 
     /**
@@ -33,7 +31,12 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        //
+        $contacto = Contactos::where('tipo', 'Cliente')->get();
+        $items = Item::all();
+        $porcentaje = 0;
+        return view('ventas.create', compact('porcentaje', $porcentaje))
+        ->with('contacto', $contacto)
+        ->with('items', $items);
     }
 
     /**
@@ -50,10 +53,10 @@ class InventarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Ventas  $ventas
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ventas $ventas)
     {
         //
     }
@@ -61,10 +64,10 @@ class InventarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Ventas  $ventas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ventas $ventas)
     {
         //
     }
@@ -73,10 +76,10 @@ class InventarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Ventas  $ventas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ventas $ventas)
     {
         //
     }
@@ -84,12 +87,11 @@ class InventarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Ventas  $ventas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ventas $ventas)
     {
         //
     }
-    
 }
