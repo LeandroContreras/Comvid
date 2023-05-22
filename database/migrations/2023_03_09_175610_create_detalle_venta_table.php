@@ -15,9 +15,10 @@ class CreateDetalleVentaTable extends Migration
     {
         Schema::create('detalle_venta', function (Blueprint $table) {
             $table->id();
-            $table->foreign('venta_id')->references('id')->on('ventas')->comment('A la venta que pertenece ');
-            $table->foreign('id_ingreso')->references('id')->on('detalle_ingreso')->comment('Al ingreso que pertenece');
+            $table->foreignId('cliente_id')->refernces('id')->on('contactos')->comment('El cliente que compra');
+            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que creo la categoria');
             $table->decimal('total', 8, 2)->comment('La cantidad de productos');
+            $table->date('fecha');
             $table->timestamps();
         });
     }

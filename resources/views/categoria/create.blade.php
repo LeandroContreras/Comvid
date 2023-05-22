@@ -6,14 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-3">
             <div class="card">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                        role="progressbar" 
-                        aria-valuenow="75" 
-                        aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="width: 75%;"> Progreso de creación</div>
-                  </div>
+                
                 <div class="card-header row justify-content-center">{{ __('CREAR CATEGORIA') }}</div>
                 <div class="card-header row justify-content-center">
                     <div class="col-md-9">    
@@ -53,15 +46,18 @@
                                         </span>
                                         @enderror
                             </div>
+                            <div>
+                                <h5 style="color:red; text-align:center">SELECCIONE LAS CARACTERISTICAS DE LA CATEGORÍA</h5>
+                            </div>
                             <div class="form-group">
-                                <label for="tamaño">Tamaño</label>
+                                <label for="tamaño">Tamaño (cm)</label>
                                 <input type="text"
                                        name="tamaño"
                                        class="form-control @error('tamaño')
                                         is-invalid
                                        @enderror"
                                        id="tamaño"
-                                       placeholder="Introduzca el tamaño de la categoria"
+                                       placeholder="Introduzca el tamaño en centimetros"
                                        value={{old('tamaño')}} 
                                 >
                                 @error('tamaño')
@@ -78,7 +74,7 @@
                                         is-invalid
                                        @enderror"
                                        id="eje"
-                                       placeholder="Introduzca el eje de la Categoria"
+                                       placeholder="Introduzca el eje "
                                        value={{old('eje')}} 
                                 >
                                 @error('eje')
@@ -95,7 +91,7 @@
                                         is-invalid
                                        @enderror"
                                        id="color"
-                                       placeholder="Introduzca el color de la Categoria"
+                                       placeholder="Introduzca el color"
                                        value={{old('color')}} 
                                 >
                                 @error('color')
@@ -112,7 +108,7 @@
                                         is-invalid
                                        @enderror"
                                        id="forma"
-                                       placeholder="Introduzca la forma de la Categoria"
+                                       placeholder="Introduzca la forma"
                                        value={{old('forma')}} 
                                 >
                                 @error('forma')
@@ -129,8 +125,8 @@
                                         @enderror"
                                         id="tipo" >
                                         <option value="">--Seleccione--</option>
-                                        <option>Cliente</option>
-                                        <option>Proveedor</option>
+                                        <option>Nacional</option>
+                                        <option>Importada</option>
                                 </select>
                                 @error('tipo')
                                     <span class="invalid-feedback d-block" role="alert">

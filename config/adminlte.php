@@ -46,7 +46,7 @@ return [
     */
     
     'logo' => false,
-    'logo_img' => 'vendor/adminlte/dist/img/Logociudad.jpg',
+    'logo_img' => 'vendor/adminlte/dist/img/Comvid.PNG',
     'logo_img_class' => ' img-fluid',
     'logo_img_xl' => false,
     'logo_img_xl_class' => false,
@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-danger',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -82,6 +82,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
+
 
     'layout_topnav' => null,
     'layout_boxed' => null,
@@ -229,7 +230,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'Buscar',
-            'topnav_right' => true,
+            'topnav_right' => false,
             
         ],
         [
@@ -247,27 +248,19 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'NOTIFICACIONES',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-            'can'         => 'usuario.index'
-        ],
+        // [
+        //     'text'        => 'NOTIFICACIONES',
+        //     'url'         => 'notificacion',
+        //     'icon'        => 'far fa-fw fa-file',
+        //     'label_color' => 'success',
+        //     'can'         => 'notificacion.index'
+        // ],
         ['header' => ''],
         [
-            'text' => 'INICIOOOO',
-            'url'  => 'home',
-            'icon' => 'fas fa-fw fa-house-user',
-            'icon_color' => 'green',
-        ],
-        [
             'text' => 'INVENTARIO',
+            'url'  => 'home',
             'icon' => 'fas fa-fw fa-archive',
-            'url'=> 'inventario',
             'icon_color' => 'red',
-            
         ],
         [
             'text' => 'ADM. DEL PERSONAL',
@@ -285,7 +278,7 @@ return [
                     'text' => 'CATEGORIAS',
                     'url'  => 'categoria',
                     'icon'    => 'fas fa-fw fa-clipboard',
-                    'can'=> 'categorias.index',
+                    'can'=> 'categoria.index',
                 ],
                 [
                     'text' => 'LISTA DE PRODUCTOS',
@@ -361,7 +354,14 @@ return [
             'url'=> 'contactos',
             'can'=>'contactos.index'
         ],
-        
+        [
+            'text' => 'REGISTRAR USUARIOS',
+            'icon' => 'fas fa-fw fa-registered',
+            'icon_color' => 'brow',
+            'url'=> 'registro',
+            'can' => 'register'
+            //'can'=>'contactos.index'
+        ],
         //['header' => 'labels'],
         // [
         //    'text'       => 'REPORTE',

@@ -14,7 +14,7 @@ class CreateUnidadesTable extends Migration
     public function up()
     {
         Schema::create('unidades', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('unidad_id');
             $table->string('item_id');
             $table->foreign('item_id')->references('item_id')->on('items')->comment('Al item que pertenece ');
             $table->decimal('imp',8,2);

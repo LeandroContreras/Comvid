@@ -7,12 +7,7 @@
         <div class="col-md-8 mt-3">
             <div class="card">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                        role="progressbar" 
-                        aria-valuenow="75" 
-                        aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="width: 75%;"> Progreso de creación</div>
+                    
                   </div>
                 <div class="card-header row justify-content-center">{{ __('CREAR CONTACTO') }}</div>
                 <div class="card-header row justify-content-center">
@@ -53,40 +48,42 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="telefono">Telefono/Celular</label>
-                                <input type="integer"
-                                       name="telefono"
-                                       class="form-control @error('telefono')
-                                        is-invalid
-                                       @enderror"
-                                       id="telefono"
-                                       placeholder="Introduzca Telefono/Celular del Contacto"
-                                       value={{old('telefono')}} 
-                                >
-                                @error('telefono')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{$message}}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="tipo">Tipo</label>
-                                <select name="tipo" 
-                                        class="form-control @error('tipo')
+                            <div class="d-flex">
+                                <div class="form-group" style="margin-right: 20px">
+                                    <label for="telefono">Telefono/Celular</label>
+                                    <input type="integer"
+                                           name="telefono"
+                                           class="form-control @error('telefono')
                                             is-invalid
-                                        @enderror"
-                                        id="tipo" >
-                                        <option value="">--Seleccione--</option>
-                                        <option>Cliente</option>
-                                        <option>Proveedor</option>
-                                </select>
-                                @error('tipo')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{$message}}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                           @enderror"
+                                           id="telefono"
+                                           placeholder="Introduzca Telefono/Celular del Contacto"
+                                           value={{old('telefono')}} 
+                                    >
+                                    @error('telefono')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group" style="margin-right: 20px">
+                                    <label for="tipo">Tipo</label>
+                                    <select name="tipo" 
+                                            class="form-control @error('tipo')
+                                                is-invalid
+                                            @enderror"
+                                            id="tipo" >
+                                            <option value="">--Seleccione--</option>
+                                            <option>Cliente</option>
+                                            <option>Proveedor</option>
+                                    </select>
+                                    @error('tipo')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            
                             <div class="form-group">
                                 <label for="departamento">Departamento</label>
                                 <select name="departamento" 
@@ -111,6 +108,43 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="form-group" style="margin-right: 50px">
+                                <label for="empresa">Empresa</label>
+                                <input type="text"
+                                       name="empresa"
+                                       class="form-control @error('empresa')
+                                        is-invalid
+                                       @enderror"
+                                       id="empresa"
+                                       placeholder="Introduzca la empresa a la que representa"
+                                       value={{old('empresa')}} 
+                                >
+                                @error('empresa')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       name="email"
+                                       class="form-control @error('email')
+                                        is-invalid
+                                       @enderror"
+                                       id="email"
+                                       placeholder="Introduzca la empresa a la que representa"
+                                       value={{old('email')}} 
+                                >
+                                @error('email')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                             <div class="form-group has-success">
                                 <label for="descripcion">Descripcion</label>
                                 <input type="text"

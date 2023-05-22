@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->decimal('precio', 5, 2);
             $table->integer('estado')->default('1');
             $table->integer('cantidad');
+            $table->integer('punto_r')->nullable();
             $table->string('obs');
             $table->date('fecha');
             $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que creo el item');

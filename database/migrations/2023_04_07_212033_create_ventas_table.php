@@ -15,12 +15,14 @@ class CreateVentasTable extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->refernces('id')->on('contactos')->comment('El cliente que compra');
-            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que creo la categoria');
+            //$table->foreignId('ventas_id')->references('id')->on('detalle_venta')->comment('El detalle al que pertenece');
             $table->string('item_id')->references('item_id')->on('items')->comment('El producto Item que se vende');
-            $table->decimal('cantidad', 8, 2)->comment('La cantidad de productos');
+            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que creo el item');
+            $table->integer('cantidad')->comment('La cantidad de productos');
+            $table->decimal('precio', 8, 2)->comment('El precio del producto');
+            $table->decimal('total', 8, 2)->comment('El total de productos');
             $table->date('fecha');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->string('estado')->default(1);
             $table->timestamps();
         });

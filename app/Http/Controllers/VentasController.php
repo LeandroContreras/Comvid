@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\Ventas;
 use App\Contactos;
+use App\Categorias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VentasController extends Controller
 {
@@ -33,10 +36,42 @@ class VentasController extends Controller
     {
         $contacto = Contactos::where('tipo', 'Cliente')->get();
         $items = Item::all();
+        $categoria = Categorias::all();
         $porcentaje = 0;
         return view('ventas.create', compact('porcentaje', $porcentaje))
         ->with('contacto', $contacto)
+        ->with('categoria', $categoria)
         ->with('items', $items);
+    }
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+             'categoria'=>'required',
+             'producto'=>'required',
+             'cliente'=>'required',
+             'cantidad'=>'required',
+             'fecha'=>'required',
+             'total'=>'required',
+             'precio'=>'required'
+         ]);
+    
+         try {
+            DB::table('ventas')->insert([
+                 'item_id'=>$data['producto'][0],
+                 'precio' => $data['precio'][0],
+                 'cantidad'=>$data['cantidad'][0],
+                 'fecha'=>$data['fecha'],
+                 'total'=>$data['total'],
+                 'contacto_id'=>$data['cliente'],
+                 'user_id'=>Auth::user()->id,
+                 'created_at'=>date('Y-m-d H:i:s'),
+                 'updated_at'=>date('Y-m-d H:i:s'),
+             ]);
+    
+             return redirect()->action('ItemController@index');
+         } catch (\Exception $e) {
+             return back()->with('error', 'Error al insertar en la base de datos');
+         }
     }
 
     /**
@@ -45,10 +80,7 @@ class VentasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.

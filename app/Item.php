@@ -3,13 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Item extends Model
 {
+    use Notifiable;
+    
     protected $table = 'items';
+    // ...
+    protected $primaryKey = 'item_id';
+    public $incrementing = false;
+    // ...
     
     protected $fillable = [
-        'id',
+        'item_id',
         'categoria_id',
         'contacto_id',
         'descripcion',
@@ -27,5 +34,9 @@ class Item extends Model
     }
     public function contacto(){
         return $this->belongsTo(Contacto::class);
+    }
+    public function unidades()
+    {
+    return $this->hasMany('App\Unidades', 'unidad_id');
     }
 }

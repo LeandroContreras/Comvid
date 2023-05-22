@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+
+use App\User; // Agrega esta línea
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
+use Spatie\Permission\Traits\HasRoles;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
+    use RegistersUsers, HasRoles;
 
     /**
      * Where to redirect users after registration.
@@ -36,10 +33,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+
+public function __construct()
+{
+    $this->middleware(['guest', 'role:Administrador']);
+}
 
     /**
      * Get a validator for an incoming registration request.
@@ -56,18 +54,34 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
+    public function registerUser(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed',
+            'role' => 'required|string',
         ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Assign user role
+        $role = Role::where('name', $request->role)->first();
+        $user->assignRole($role);
+
+        return redirect()->back()->with('success', 'Usuario creado exitosamente!');
+    }
+    public function showRegistrationForm()
+    {
+        if (!Auth::check() || !Auth::user()->hasRoles('Administrador')) {
+            return redirect()->back()->withErrors(['error' => 'No tienes permiso para acceder a esta página']);
+        }
+    
+        $roles = Role::all();
+        return view('auth.register-user', compact('roles'));
     }
 }

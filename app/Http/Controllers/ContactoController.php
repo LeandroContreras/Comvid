@@ -54,6 +54,8 @@ class ContactoController extends Controller
             'tipo'=>'required',
             'departamento'=>'required',
             'descripcion'=>'required',
+            'empresa'=>'required',
+            'email'=>'required'
         ]);
         DB::table('contactos')->insert([
             'nombres'=>$data['nombres'],
@@ -62,6 +64,8 @@ class ContactoController extends Controller
             'tipo'=>$data['tipo'],
             'departamento'=>$data['departamento'],
             'descripcion'=>$data['descripcion'],
+            'empresa'=>$data['empresa'],
+            'email'=>$data['email'],
             'user_id'=>Auth::user()->id,
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),

@@ -6,14 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-3">
             <div class="card">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                        role="progressbar" 
-                        aria-valuenow="75" 
-                        aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="width: 75%;"> Progreso de creación</div>
-                  </div>
+
                 <div class="card-header row justify-content-center">{{ __('INGRESO DE PRODUCTOS') }}</div>
                 <div class="card-header row justify-content-center">
                     <div class="col-md-9">    
@@ -95,7 +88,7 @@
 
                             <div class="d-flex" style="justify-content:space-between; align-items:center; margin-top:10px">
                             <div class="form-group">
-                                <label for="precio">Precio X unidad</label>
+                                <label for="precio">Precio X unidad (Bs)</label>
                                 <input type="integer"
                                        style="width: 120px"
                                        name="precio"
@@ -145,7 +138,8 @@
                                         @enderror
                             </div>
                             </div>
-                            <div class="form-group has-success">
+                            <div class="d-flex">
+                            <div class="form-group has-success" style="width: 350px; margin-right:20px">
                                 <label for="obs">Observación</label>
                                 <input type="text"
                                        name="obs"
@@ -161,6 +155,25 @@
                                         <strong>{{$message}}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="punto_r">Puento R.O.</label>
+                                <input type="integer"
+                                       style="width: 120px"
+                                       name="punto_r"
+                                       class="form-control @error('punto_r')
+                                        is-invalid
+                                       @enderror"
+                                       id="punto_r"
+                                       placeholder="Punto R"
+                                       value={{old('punto_r')}} 
+                                >
+                                @error('punto_r')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-outline-success" value="Ingreso de Productos">

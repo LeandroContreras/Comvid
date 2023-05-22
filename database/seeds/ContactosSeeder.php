@@ -20,6 +20,7 @@ class ContactosSeeder extends Seeder
             'departamento'=>'La Paz',
             'descripcion'=>'Este es el primero',
             'user_id'=>5,
+            'email'=>'lintra@gmail.com',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);
@@ -30,6 +31,8 @@ class ContactosSeeder extends Seeder
             'tipo'=>'Cliente',
             'departamento'=>'Cochabamba',
             'user_id'=>2,
+            'empresa'=>'Automovil Club',
+            'email'=>'leonel@gmail.com',
             'descripcion'=>'Este es el segundo',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
@@ -42,6 +45,8 @@ class ContactosSeeder extends Seeder
             'departamento'=>'Santa Cruz',
             'descripcion'=>'Este es el tercero',
             'user_id'=>2,
+            'empresa'=>'acb',
+            'email'=>'esparta@gmail.com',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);

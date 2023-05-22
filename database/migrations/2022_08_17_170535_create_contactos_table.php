@@ -21,6 +21,8 @@ class CreateContactosTable extends Migration
             $table->String('tipo');
             $table->String('departamento');
             $table->text('descripcion');
+            $table->text('empresa')->nullable();
+            $table->string('email')->unique();
             $table->unsignedBigInteger('user_id')->index('user_id')->comment('El usuario que creo el contacto');
             $table->timestamps();
         });
